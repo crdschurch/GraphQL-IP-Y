@@ -10,18 +10,18 @@ type Address {
   Address_ID: ID
   Address_Line_1: String
   City: String
-  State: String
   Postal_Code: String
 }
 
 type Household {
-  Household_ID: Int
+  Household_ID: ID
   Household_Name: String
+  Address: Address
 }
 
 type Query {
-  address(id: Int): Address
-  household(id: Int): Household
+  address(Address_ID: Int): Address
+  household(Household_ID: Int): Household
 }
 `;
 
