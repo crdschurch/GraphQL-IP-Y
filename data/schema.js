@@ -7,7 +7,7 @@ import resolvers from './resolvers';
 
 const typeDefs = `
 type Address {
-  AddressID: Int
+  Address_ID: ID
   Address_Line_1: String
   City: String
   State: String
@@ -15,7 +15,7 @@ type Address {
 }
 
 type Household {
-  HouseholdID: Int
+  Household_ID: Int
   Household_Name: String
 }
 

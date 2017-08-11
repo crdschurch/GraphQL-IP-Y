@@ -1,8 +1,10 @@
+require('dotenv').config();
 import Sequelize from 'sequelize';
-const sequelize = new Sequelize('database', 'user', 'password', {
-  host: 'host url',
+console.log("ssssssss");
+const sequelize = new Sequelize(process.env.DB, process.env.DB_USER, process.env.DB_PASSWORD, {
+  host: process.env.DB_HOST,
   port: 1433,
-  dialect: 'mssql',
+  dialect: process.env.DB_DIALECT,
   options: {
       timestamps: false,
   }
@@ -19,17 +21,17 @@ sequelize.authenticate()
     });
 
 const AddressModel = sequelize.define('Addresses', {
-  AddressID: { type: Sequelize.INTEGER },
+  Address_ID: { type: Sequelize.INTEGER },
   Address_Line_1: { type: Sequelize.STRING },
   City: { type: Sequelize.STRING },
   State: { type: Sequelize.STRING },
   Postal_Code: { type: Sequelize.STRING },
-});
+}, {timestamps: false});
 
 const HouseholdModel = sequelize.define('Households', {
   HouseholdID: { type: Sequelize.INTEGER },
   HouseholdName: { type: Sequelize.STRING },
-});
+}, {timestamps: false});
 
 const Addresses = sequelize.models.Addresses;
 const Households = sequelize.models.Households;
