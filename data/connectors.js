@@ -1,15 +1,17 @@
+import Sequelize, { INTEGER, STRING } from 'sequelize';
+
 require('dotenv').config();
-import Sequelize from 'sequelize';
+
 const sequelize = new Sequelize(process.env.DB, process.env.DB_USER, process.env.DB_PASSWORD, {
   host: process.env.DB_HOST,
   port: 1433,
   dialect: process.env.DB_DIALECT,
   options: {
-      timestamps: false,
-  }
+    timestamps: false,
+  },
 });
 
-sequelize
+// sequelize;
 
 sequelize.authenticate()
     .then(() => {
@@ -21,35 +23,26 @@ sequelize.authenticate()
 
 const AddressModel = sequelize.define('Addresses', {
   Address_ID: {
-    type: Sequelize.INTEGER,
+    type: INTEGER,
     primaryKey: true,
-    allowNull: false
+    allowNull: false,
   },
-  Address_Line_1: { type: Sequelize.STRING },
-  City: { type: Sequelize.STRING },
-  // State: { type: Sequelize.STRING },
-  Postal_Code: { type: Sequelize.STRING },
-}, {timestamps: false});
+  Address_Line_1: { type: STRING },
+  City: { type: STRING },
+  // State: { type: STRING },
+  Postal_Code: { type: STRING },
+}, { timestamps: false });
 
 const HouseholdModel = sequelize.define('Households', {
   Household_ID: {
-    type: Sequelize.INTEGER,
+    type: INTEGER,
     primaryKey: true,
-    allowNull: false
+    allowNull: false,
   },
-  Household_Name: { type: Sequelize.STRING },
-  Address_ID: {
-    type: Sequelize.INTEGER,
-    references: {
-      // This is a reference to another model
-      model: AddressModel,
-      // This is the column name of the referenced model
-      key: 'Address_ID',
-    }
-  }
-}, {timestamps: false});
+  Household_Name: { type: STRING },
+}, { timestamps: false });
+HouseholdModel.belongsTo(AddressModel, { foreignKey: 'Address_ID' });
 
-AddressModel.belongsTo(HouseholdModel);
 // Comment.belongsTo(this.Image, {
 //   foreignKey: 'commentable_id',
 //   constraints: false,
