@@ -4,7 +4,7 @@ const mocks = {
   String: () => 'It works!',
   Query: () => ({
     address: (root, args) => {
-      return { id: args.id, };
+      return { id: args.id };
     },
   }),
   Address: () => ({ id: () => casual.id }),

@@ -8,7 +8,14 @@ const resolvers = {
     },
     household(_, args) {
       console.log(args);
-      return Households.find({ where: args });
+
+      return Households.find({
+        where: args,
+        include: {
+          model: Addresses,
+          as: 'Address',
+        },
+      });
     },
   },
 };
