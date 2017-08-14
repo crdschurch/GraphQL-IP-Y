@@ -13,9 +13,20 @@ type Address {
   Postal_Code: String
 }
 
+type Participant {
+  participantId: ID
+  contact: Contact
+}
+
 type Contact {
   contactId: ID
   displayName: String
+  participant: Participant
+}
+
+type Event {
+  eventId: ID
+  eventTitle: String
 }
 
 type Household {
@@ -28,7 +39,9 @@ type Household {
 type Query {
   address(Address_ID: Int): Address
   contact(contactId: Int): Contact
+  events: [Event]
   household(Household_ID: Int): Household
+  participant(participantId: Int): Participant
 }
 `;
 

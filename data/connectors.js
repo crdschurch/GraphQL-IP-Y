@@ -46,6 +46,19 @@ const ContactModel = sequelize.define('Contacts', {
   },
 }, { timestamps: false });
 
+const EventModel = sequelize.define('Events', {
+  eventId: {
+    field: 'Event_ID',
+    type: INTEGER,
+    primaryKey: true,
+    allowNull: false,
+  },
+  eventTitle: {
+    field: 'Event_Title',
+    type: STRING,
+  },
+}, { timestamps: false });
+
 const HouseholdModel = sequelize.define('Households', {
   Household_ID: {
     type: INTEGER,
@@ -54,8 +67,15 @@ const HouseholdModel = sequelize.define('Households', {
   },
   Household_Name: { type: STRING },
 }, { timestamps: false });
-HouseholdModel.belongsTo(AddressModel, { foreignKey: 'Address_ID' });
-HouseholdModel.hasMany(ContactModel, { as: 'contacts', foreignKey: 'Household_ID' });
+
+const ParticipantModel = sequelize.define('Participants', {
+  participantId: {
+    field: 'Participant_ID',
+    type: INTEGER,
+    primaryKey: true,
+    allowNull: false,
+  },
+}, { timestamps: false });
 
 // Comment.belongsTo(this.Image, {
 //   foreignKey: 'commentable_id',
@@ -63,8 +83,15 @@ HouseholdModel.hasMany(ContactModel, { as: 'contacts', foreignKey: 'Household_ID
 //   as: 'image'
 // });
 
-const Addresses = sequelize.models.Addresses;
-const Contacts = sequelize.models.Contacts;
-const Households = sequelize.models.Households;
+ParticipantModel.belongsTo(ContactModel, { as: 'contact', foreignKey: 'Contact_ID' });
+ContactModel.hasOne(ParticipantModel, { as: 'participant', foreignKey: 'Contact_ID' });
+HouseholdModel.belongsTo(AddressModel, { foreignKey: 'Address_ID' });
+HouseholdModel.hasMany(ContactModel, { as: 'contacts', foreignKey: 'Household_ID' });
 
-export { Addresses, Contacts, Households };
+export const {
+  Addresses,
+  Contacts,
+  Events,
+  Households,
+  Participants,
+} = sequelize.models;

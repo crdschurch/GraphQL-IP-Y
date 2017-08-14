@@ -1,4 +1,4 @@
-import { Addresses, Contacts, Households } from './connectors';
+import { Addresses, Contacts, Events, Households, Participants } from './connectors';
 
 const resolvers = {
   Query: {
@@ -8,7 +8,12 @@ const resolvers = {
     },
     contact(_, args) {
       console.log(args);
-      return Contacts.find({ where: args });
+      return Contacts.find({
+        where: args,
+        include: [
+          { model: Participants, as: 'participant' },
+        ],
+      });
     },
     household(_, args) {
       console.log(args);
@@ -19,6 +24,23 @@ const resolvers = {
           { model: Addresses, as: 'Address' },
           { model: Contacts, as: 'contacts' },
         ],
+      });
+    },
+    participant(_, args) {
+      console.log(args);
+
+      return Participants.find({
+        where: args,
+        include: [
+          { model: Contacts, as: 'contact' },
+        ],
+      });
+    },
+    events(_, args) {
+      console.log(args);
+
+      return Events.findAll({
+        where: args,
       });
     },
   },

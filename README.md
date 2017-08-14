@@ -19,6 +19,11 @@ Repo for IP Sprint Y - investigate GraphQL and MP
     }
   }
 
+  events {
+    eventId
+    eventTitle
+  }
+
   participant (participantId: 7558913) {
     participantId
     contact {
@@ -26,7 +31,7 @@ Repo for IP Sprint Y - investigate GraphQL and MP
       displayName
     }
   }
-  
+
   household (Household_ID: 5758325) {
     Household_ID
     Household_Name
