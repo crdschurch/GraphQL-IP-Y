@@ -33,6 +33,19 @@ const AddressModel = sequelize.define('Addresses', {
   Postal_Code: { type: STRING },
 }, { timestamps: false });
 
+const ContactModel = sequelize.define('Contacts', {
+  contactId: {
+    field: 'Contact_ID',
+    type: INTEGER,
+    primaryKey: true,
+    allowNull: false,
+  },
+  displayName: {
+    field: 'Display_Name',
+    type: STRING,
+  },
+}, { timestamps: false });
+
 const HouseholdModel = sequelize.define('Households', {
   Household_ID: {
     type: INTEGER,
@@ -42,6 +55,7 @@ const HouseholdModel = sequelize.define('Households', {
   Household_Name: { type: STRING },
 }, { timestamps: false });
 HouseholdModel.belongsTo(AddressModel, { foreignKey: 'Address_ID' });
+HouseholdModel.hasMany(ContactModel, { as: 'contacts', foreignKey: 'Household_ID' });
 
 // Comment.belongsTo(this.Image, {
 //   foreignKey: 'commentable_id',
@@ -50,6 +64,7 @@ HouseholdModel.belongsTo(AddressModel, { foreignKey: 'Address_ID' });
 // });
 
 const Addresses = sequelize.models.Addresses;
+const Contacts = sequelize.models.Contacts;
 const Households = sequelize.models.Households;
 
-export { Addresses, Households };
+export { Addresses, Contacts, Households };

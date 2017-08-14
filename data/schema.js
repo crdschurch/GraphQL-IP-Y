@@ -13,14 +13,21 @@ type Address {
   Postal_Code: String
 }
 
+type Contact {
+  contactId: ID
+  displayName: String
+}
+
 type Household {
   Household_ID: ID
   Household_Name: String
+  contacts: [Contact]
   Address: Address
 }
 
 type Query {
   address(Address_ID: Int): Address
+  contact(contactId: Int): Contact
   household(Household_ID: Int): Household
 }
 `;
