@@ -11,9 +11,11 @@ https://dev-blog.apollodata.com/tutorial-building-a-graphql-server-cddaa023c035
 
 ## Clone the repo
 
+```
 git clone https://github.com/crdschurch/GraphQL-IP-Y.git
 cd GraphQL-IP-Y
 npm install
+```
 
 ## Create the .env file
 
@@ -27,11 +29,13 @@ npm i dotenv --save
 
 In the root folder of the application create a filed named .env. Add the following items:
 
+```
 DB = 'MinistryPlatform'
 DB_USER = ''
 DB_PASSWORD =''
 DB_HOST = 'MP-Int-DB.centralus.cloudapp.azure.com'
 DB_DIALECT = 'mssql'
+```
 
 ### Load Sequelize
 
