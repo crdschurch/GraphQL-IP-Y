@@ -91,6 +91,12 @@ Add the item to the resolvers object in resolvers.js
 
 In connectors.js, use the Sequelize db.define method to create a model object corresponding the the data to be returned from the database.
 
+# Mocks
+
+The file mocks.js contains mocked data that you can use if you can't connect to the database. To use the mock, modify the mock object in mocks.js and then uncomment out the following line in schema.js.
+
+// addMockFunctionsToSchema({ schema, mocks });
+
 
 
 

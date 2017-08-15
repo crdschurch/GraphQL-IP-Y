@@ -43,12 +43,6 @@ const HouseholdModel = sequelize.define('Households', {
 }, { timestamps: false });
 HouseholdModel.belongsTo(AddressModel, { foreignKey: 'Address_ID' });
 
-// Comment.belongsTo(this.Image, {
-//   foreignKey: 'commentable_id',
-//   constraints: false,
-//   as: 'image'
-// });
-
 const Addresses = sequelize.models.Addresses;
 const Households = sequelize.models.Households;
 
