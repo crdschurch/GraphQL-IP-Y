@@ -47,6 +47,7 @@ This will bring up a GraphQL UI called GraphiQL (pronounced 'graphical').
 
 Type the following into the left pane in GraphiQL:
 
+```
 {
   household(Household_ID: 1) {
     Household_ID
@@ -59,9 +60,11 @@ Type the following into the left pane in GraphiQL:
     }
   }
 }
+```
 
 This will display the following in the right pane:
 
+```
 {
   "data": {
     "household": {
@@ -76,6 +79,7 @@ This will display the following in the right pane:
     }
   }
 }
+```
 
 # Adding additional items
 
